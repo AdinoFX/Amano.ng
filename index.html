@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Amano.ng | Africa's B2B Agriculture Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .bg-primary { background-color: #001F3F; }
+        .bg-secondary { background-color: #FF8C00; }
+        .text-primary { color: #001F3F; }
+        .text-secondary { color: #FF8C00; }
+
+        .hero-gradient {
+            background: linear-gradient(-45deg, #001F3F, #003366, #001F3F, #1a3a5a);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .bottom-nav {
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
+        }
+
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f3f4f6;
+        }
+        @media (min-width: 1024px) {
+            .product-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+                border-color: #FF8C00;
+            }
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 pb-20 md:pb-0">
+
+    <nav class="hidden md:block bg-white/80 backdrop-blur-md border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <img src="images/PNG3.png" alt="Amano" class="h-12 cursor-pointer" onclick="location.href='index.html'">
+                <div class="relative w-[400px]">
+                    <input type="text" id="global-search-desktop" placeholder="Search commodities..." 
+                           class="w-full pl-12 pr-4 py-2.5 bg-gray-100 border-none rounded-2xl text-sm focus:ring-2 focus:ring-secondary outline-none">
+                    <i class="fas fa-search absolute left-4 top-3.5 text-gray-400"></i>
+                </div>
+            </div>
+            <div class="flex items-center space-x-8 text-[13px] font-bold uppercase tracking-wider">
+                <a href="index.html" class="text-secondary border-b-2 border-secondary pb-1">Marketplace</a>
+                <a href="auth.html?role=seller" class="text-primary hover:text-secondary">Become a Seller</a>
+                <div id="auth-links-desktop" class="flex items-center space-x-4 border-l pl-6">
+                    <a href="auth.html" class="text-gray-500">Login</a>
+                    <a href="auth.html" class="bg-primary text-white px-8 py-3 rounded-2xl shadow-lg shadow-blue-900/20">Join Free</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="md:hidden bg-white sticky top-0 z-50 px-4 py-3 border-b flex items-center justify-between">
+        <img src="images/PNG3.png" alt="Amano" class="h-8" onclick="location.href='index.html'">
+        <div class="flex items-center space-x-4">
+            <button onclick="document.getElementById('mobile-search-overlay').classList.toggle('hidden')" class="text-primary">
+                <i class="fas fa-search text-xl"></i>
+            </button>
+            <div class="relative">
+                <i class="fas fa-bell text-xl text-primary"></i>
+                <span class="absolute -top-1 -right-1 w-2 h-2 bg-secondary rounded-full"></span>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-search-overlay" class="hidden fixed inset-0 bg-white z-[60] p-4">
+        <div class="flex items-center space-x-4 mb-6">
+            <button onclick="document.getElementById('mobile-search-overlay').classList.add('hidden')" class="text-primary">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </button>
+            <input type="text" id="global-search-mobile" placeholder="Search commodities..." 
+                   class="w-full py-3 px-4 bg-gray-100 rounded-2xl outline-none focus:ring-2 focus:ring-secondary">
+        </div>
+        <p class="text-[10px] font-black uppercase text-gray-400 mb-4 tracking-widest">Recent Searches</p>
+        <div class="flex flex-wrap gap-2">
+            <span class="bg-gray-100 px-4 py-2 rounded-full text-xs font-medium">Yellow Corn</span>
+            <span class="bg-gray-100 px-4 py-2 rounded-full text-xs font-medium">Soya Beans</span>
+        </div>
+    </div>
+
+    <section class="hero-gradient py-12 md:py-24 text-white px-4 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <span class="bg-secondary/20 text-secondary text-[10px] md:text-xs font-black px-4 py-2 rounded-full uppercase tracking-[0.2em] mb-4 inline-block">Direct From Source</span>
+            <h1 class="text-3xl md:text-7xl font-black mb-4 uppercase tracking-tighter leading-tight">
+                Secure Wholesale <br><span class="text-secondary italic">Agro-Trade</span>
+            </h1>
+            <p class="text-blue-100 text-sm md:text-xl font-medium max-w-xl mx-auto leading-relaxed px-4">
+                The leading B2B exchange for verified Nigerian producers.
+            </p>
+        </div>
+    </section>
+
+    <div class="md:hidden overflow-x-auto no-scrollbar py-6 px-4 bg-white border-b flex space-x-4">
+        <button class="bg-primary text-white px-6 py-2 rounded-full text-xs font-bold whitespace-nowrap">All</button>
+        <button class="bg-gray-100 text-gray-600 px-6 py-2 rounded-full text-xs font-bold whitespace-nowrap">Grains</button>
+        <button class="bg-gray-100 text-gray-600 px-6 py-2 rounded-full text-xs font-bold whitespace-nowrap">Legumes</button>
+        <button class="bg-gray-100 text-gray-600 px-6 py-2 rounded-full text-xs font-bold whitespace-nowrap">Tubers</button>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 md:py-16">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-xl md:text-3xl font-black text-primary uppercase tracking-tighter italic">Live Listings</h2>
+            <select id="category-filter" class="hidden md:block bg-white border-2 border-gray-100 text-sm font-bold rounded-2xl px-6 py-3 outline-none focus:border-secondary transition-all">
+                <option value="all">All Commodities</option>
+                <option value="grains">Grains</option>
+                <option value="legumes">Legumes</option>
+                <option value="tubers">Tubers</option>
+            </select>
+        </div>
+
+        <div id="marketplace-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
+            <div class="bg-white rounded-2xl p-2 md:p-4 border border-gray-100">
+                <div class="h-32 md:h-48 skeleton rounded-xl mb-3"></div>
+                <div class="h-4 skeleton w-3/4 mb-2 rounded"></div>
+                <div class="h-4 skeleton w-1/2 mb-3 rounded"></div>
+                <div class="h-8 skeleton rounded-lg"></div>
+            </div>
+            <div class="bg-white rounded-2xl p-2 md:p-4 border border-gray-100">
+                <div class="h-32 md:h-48 skeleton rounded-xl mb-3"></div>
+                <div class="h-4 skeleton w-3/4 mb-2 rounded"></div>
+                <div class="h-4 skeleton w-1/2 mb-3 rounded"></div>
+                <div class="h-8 skeleton rounded-lg"></div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t bottom-nav z-50 flex justify-around py-3 px-2">
+        <a href="index.html" class="flex flex-col items-center text-secondary">
+            <i class="fas fa-home text-lg mb-1"></i>
+            <span class="text-[9px] font-bold uppercase">Home</span>
+        </a>
+        <button onclick="document.getElementById('mobile-search-overlay').classList.remove('hidden')" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-search text-lg mb-1"></i>
+            <span class="text-[9px] font-bold uppercase">Search</span>
+        </button>
+        <a href="messages.html" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-comment-alt text-lg mb-1"></i>
+            <span class="text-[9px] font-bold uppercase">Chat</span>
+        </a>
+        <a href="auth.html" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-user-circle text-lg mb-1"></i>
+            <span class="text-[9px] font-bold uppercase">Account</span>
+        </a>
+    </nav>
+
+    <script type="module" src="js/marketplace.js"></script>
+</body>
+</html>

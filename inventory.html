@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Inventory | Amano.ng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .bg-primary { background-color: #001F3F; }
+        .bg-secondary { background-color: #FF8C00; }
+        .text-primary { color: #001F3F; }
+        .sidebar-link:hover { background-color: rgba(255, 140, 0, 0.1); border-left: 4px solid #FF8C00; }
+        .active-link { background-color: rgba(255, 140, 0, 0.1); border-left: 4px solid #FF8C00; color: #FF8C00; }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+
+    <aside class="hidden lg:flex flex-col w-64 bg-white h-screen fixed left-0 top-0 border-r z-50">
+        <div class="p-6 border-b">
+            <img src="images/ICON 3.png" alt="Amano Logo" class="w-32 object-contain">
+        </div>
+        <nav class="flex-1 p-4 space-y-2">
+            <a href="seller-dashboard.html" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link text-gray-600 transition">
+                <i class="fas fa-th-large"></i> <span class="font-medium">Overview</span>
+            </a>
+            <a href="inventory.html" class="flex items-center space-x-3 p-3 rounded-lg active-link">
+                <i class="fas fa-boxes"></i> <span class="font-medium">My Products</span>
+            </a>
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link text-gray-600 transition">
+                <i class="fas fa-handshake"></i> <span class="font-medium">Orders</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t">
+            <button id="logout-btn" class="flex items-center space-x-3 p-3 w-full text-red-500 hover:bg-red-50 transition rounded-lg font-semibold">
+                <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="lg:ml-64 min-h-screen p-4 lg:p-8">
+        <header class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <h1 class="text-2xl font-black text-primary uppercase tracking-tight">Inventory Management</h1>
+                <p class="text-gray-500 text-sm mt-1">Update, track, and manage your listed farm produce.</p>
+            </div>
+            <button onclick="window.location.href='seller-dashboard.html'" class="bg-secondary text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:opacity-90 transition active:scale-95">
+                <i class="fas fa-plus mr-2"></i> Add New Listing
+            </button>
+        </header>
+
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-6 flex flex-wrap gap-4 items-center">
+            <div class="relative flex-1 min-w-[250px]">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="search-inventory" placeholder="Search by product name..." class="w-full pl-12 pr-4 py-3 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition">
+            </div>
+            <select id="filter-category" class="py-3 px-4 bg-gray-50 rounded-xl border-none outline-none focus:ring-2 focus:ring-orange-500 font-medium text-gray-600">
+                <option value="all">All Categories</option>
+                <option value="Grains">Grains</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Tubers">Tubers</option>
+                <option value="Fruits">Fruits</option>
+            </select>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-50 text-gray-400 uppercase text-[10px] font-bold tracking-widest">
+                        <tr>
+                            <th class="px-6 py-4">Produce</th>
+                            <th class="px-6 py-4">Category</th>
+                            <th class="px-6 py-4">Price / Unit</th>
+                            <th class="px-6 py-4">Status</th>
+                            <th class="px-6 py-4 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory-table-body" class="divide-y divide-gray-50"></tbody>
+                </table>
+            </div>
+
+            <div id="inventory-empty-state" class="hidden p-20 text-center">
+                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
+                    <i class="fas fa-box-open text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-gray-700">No products found</h3>
+                <p class="text-sm text-gray-500">Try adjusting your filters or add a new product.</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="edit-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl fade-in overflow-hidden">
+            <div class="p-6 border-b flex justify-between items-center bg-white">
+                <h2 class="text-xl font-bold text-primary">Edit Produce Details</h2>
+                <button onclick="closeEditModal()" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:text-red-500 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div id="edit-alert" class="hidden mx-6 mt-4 p-4 rounded-xl text-sm font-medium"></div>
+
+            <form id="edit-product-form" class="p-6 space-y-5">
+                <input type="hidden" id="edit-id">
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2">
+                        <label class="block text-sm font-bold text-gray-700">Produce Name</label>
+                        <input type="text" id="edit-name" required class="w-full mt-1 px-4 py-3 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-orange-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700">Price (₦)</label>
+                        <input type="number" id="edit-price" required class="w-full mt-1 px-4 py-3 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-orange-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700">Status</label>
+                        <select id="edit-status" class="w-full mt-1 px-4 py-3 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-orange-500 transition">
+                            <option value="available">Available</option>
+                            <option value="sold out">Sold Out</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" id="update-btn" class="w-full bg-secondary text-white py-4 rounded-2xl font-black uppercase tracking-widest hover:opacity-90 transition shadow-xl active:scale-[0.98]">
+                    Update Listing
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/inventory.js"></script>
+</body>
+</html>
