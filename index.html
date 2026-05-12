@@ -1,177 +1,1213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Amano.ng | Africa's B2B Agriculture Marketplace</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        body { font-family: 'Poppins', sans-serif; -webkit-tap-highlight-color: transparent; }
-        .bg-primary { background-color: #001F3F; }
-        .bg-secondary { background-color: #FF8C00; }
-        .text-primary { color: #001F3F; }
-        .text-secondary { color: #FF8C00; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amano.ng — Student Market</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-        .hero-gradient {
-            background: linear-gradient(-45deg, #001F3F, #003366, #001F3F, #1a3a5a);
-            background-size: 400% 400%;
-            animation: gradientMove 15s ease infinite;
-        }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Outfit',sans-serif;
+}
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+body{
+background:#f9fafb;
+color:#111827;
+overflow-x:hidden;
+}
 
-        .bottom-nav {
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
-        }
+:root{
+--primary:#0C1F3F;
+--orange:#F7941D;
+--light:#ffffff;
+--gray:#6b7280;
+--gradient:linear-gradient(135deg,#F7941D,#ff5f6d);
+--success: #10B981;
+}
 
-        .product-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #f3f4f6;
-        }
-        @media (min-width: 1024px) {
-            .product-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-                border-color: #FF8C00;
-            }
-        }
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(16px);
+background:rgba(255,255,255,.8);
+z-index:900;
+border-bottom:1px solid rgba(0,0,0,.05);
+}
 
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
+.logo img{
+width:140px;
+}
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-    </style>
+.cart-btn{
+background:var(--primary);
+border:none;
+padding:12px 24px;
+border-radius:50px;
+color:white;
+font-weight:600;
+font-size: 0.95rem;
+cursor:pointer;
+display:flex;
+gap:12px;
+align-items:center;
+box-shadow:0 8px 20px rgba(12, 31, 63, 0.15);
+transition:all .3s ease;
+}
+
+.cart-btn span {
+background: var(--orange);
+padding: 2px 8px;
+border-radius: 20px;
+font-size: 0.85rem;
+}
+
+.cart-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 12px 25px rgba(12, 31, 63, 0.25);
+}
+
+.hero{
+height:100vh;
+position:relative;
+overflow:hidden;
+}
+
+.slide{
+position:absolute;
+inset:0;
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+padding:0 8%;
+opacity:0;
+transition:opacity 1s ease-in-out;
+}
+
+.slide.active{
+opacity:1;
+}
+
+.slide::after{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.3));
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:650px;
+color:white;
+animation:fadeUp 1s ease;
+}
+
+.hero-content h1{
+font-size:4.5rem;
+line-height:1.1;
+margin-bottom:20px;
+letter-spacing: -1px;
+}
+
+.hero-content p{
+font-size:1.15rem;
+line-height:1.8;
+margin-bottom:35px;
+color:rgba(255,255,255,.9);
+}
+
+.hero-btn{
+background:var(--gradient);
+padding:18px 32px;
+border:none;
+border-radius:50px;
+font-size:1.05rem;
+font-weight:600;
+color:white;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 10px 25px rgba(247, 148, 29, 0.3);
+}
+
+.hero-btn:hover{
+transform:scale(1.05);
+}
+
+.hero-btn a {
+color: white;
+text-decoration: none;
+}   
+
+@keyframes fadeUp{
+from{ opacity:0; transform:translateY(40px); }
+to{ opacity:1; transform:translateY(0); }
+}
+
+.section{
+padding:100px 6%;
+}
+
+.section-title{
+font-size:2.8rem;
+margin-bottom:10px;
+color:var(--primary);
+letter-spacing: -0.5px;
+}
+
+.section-subtitle{
+color:var(--gray);
+margin-bottom:60px;
+font-size:1.1rem;
+}
+
+.products-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:35px;
+}
+
+.product-card{
+background:white;
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,.04);
+border: 1px solid rgba(0,0,0,0.03);
+transition:all .4s ease;
+position:relative;
+display: flex;
+flex-direction: column;
+}
+
+.product-card:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(0,0,0,.08);
+}
+
+.product-img{
+height:260px;
+overflow:hidden;
+}
+
+.product-img img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .6s ease;
+}
+
+.product-card:hover .product-img img{
+transform:scale(1.05);
+}
+
+.product-body{
+padding:30px;
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+}
+
+.product-name{
+font-size:1.5rem;
+font-weight:700;
+margin-bottom:8px;
+color: var(--primary);
+}
+
+.product-desc{
+font-size:0.95rem;
+line-height:1.6;
+color:var(--gray);
+margin-bottom:20px;
+flex-grow: 1;
+}
+
+.product-price{
+font-size:1.8rem;
+font-weight:700;
+color:var(--orange);
+margin-bottom:25px;
+}
+
+.qty-control{
+display:flex;
+align-items:center;
+justify-content: space-between;
+background: #f3f4f6;
+border-radius: 50px;
+padding: 5px;
+margin-bottom:20px;
+}
+
+.qty-btn{
+width:40px;
+height:40px;
+border:none;
+border-radius:50%;
+background:white;
+color: var(--primary);
+font-size:1.2rem;
+font-weight: 600;
+cursor:pointer;
+box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+transition: .2s;
+}
+
+.qty-btn:hover {
+background: var(--primary);
+color: white;
+}
+
+.qty-control span {
+font-weight: 600;
+font-size: 1.1rem;
+width: 30px;
+text-align: center;
+}
+
+.add-btn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:50px;
+background:var(--primary);
+color:white;
+font-size:1rem;
+font-weight:600;
+cursor:pointer;
+transition:all .3s ease;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+}
+
+.add-btn:hover{
+background:var(--gradient);
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(247, 148, 29, 0.2);
+}
+
+/* --- CART OVERLAY & MODAL STYLES --- */
+.cart-overlay {
+position: fixed;
+top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.4);
+backdrop-filter: blur(4px);
+z-index: 1000;
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+}
+
+.cart-overlay.active {
+opacity: 1;
+visibility: visible;
+}
+
+.cart-modal {
+position: fixed;
+top: 0; right: -450px;
+width: 100%; max-width: 450px; height: 100vh;
+background: white;
+box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+display: flex;
+flex-direction: column;
+z-index: 1001;
+}
+
+.cart-overlay.active .cart-modal {
+right: 0;
+}
+
+.cart-header {
+padding: 25px;
+border-bottom: 1px solid #eee;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.cart-header h2 {
+font-size: 1.5rem;
+color: var(--primary);
+}
+
+.close-cart-btn {
+background: #f3f4f6;
+border: none;
+width: 35px; height: 35px;
+border-radius: 50%;
+cursor: pointer;
+font-size: 1.1rem;
+color: var(--gray);
+transition: .2s;
+}
+
+.close-cart-btn:hover {
+background: #fee2e2;
+color: #ef4444;
+}
+
+.cart-items-container {
+flex: 1;
+overflow-y: auto;
+padding: 25px;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.empty-cart-msg {
+text-align: center;
+color: var(--gray);
+margin-top: 50px;
+font-size: 1.1rem;
+}
+
+.cart-item {
+display: flex;
+gap: 15px;
+padding-bottom: 20px;
+border-bottom: 1px solid #f3f4f6;
+}
+
+.cart-item-img {
+width: 80px; height: 80px;
+border-radius: 12px;
+object-fit: cover;
+background: #eee;
+}
+
+.cart-item-info {
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.cart-item-title {
+font-weight: 600;
+color: var(--primary);
+font-size: 1.05rem;
+display: flex;
+justify-content: space-between;
+}
+
+.delete-item-btn {
+background: none; border: none;
+color: #ef4444; cursor: pointer;
+font-size: 1rem; transition: .2s;
+}
+
+.delete-item-btn:hover { transform: scale(1.1); }
+
+.cart-item-price {
+color: var(--orange);
+font-weight: 700;
+}
+
+.cart-item-actions {
+display: flex;
+align-items: center;
+gap: 10px;
+background: #f3f4f6;
+border-radius: 8px;
+padding: 3px 8px;
+width: fit-content;
+}
+
+.cart-item-actions button {
+background: none; border: none;
+cursor: pointer; font-size: 1.1rem;
+color: var(--primary); font-weight: 600;
+width: 25px; height: 25px;
+}
+
+.cart-footer {
+padding: 25px;
+border-top: 1px solid #eee;
+background: #f9fafb;
+}
+
+.cart-total {
+display: flex;
+justify-content: space-between;
+font-size: 1.4rem;
+font-weight: 700;
+margin-bottom: 20px;
+color: var(--primary);
+}
+
+.checkout-btn {
+width: 100%;
+padding: 16px;
+border: none;
+border-radius: 50px;
+background: var(--gradient);
+color: white;
+font-size: 1.1rem;
+font-weight: 600;
+cursor: pointer;
+transition: .3s;
+box-shadow: 0 8px 20px rgba(247, 148, 29, 0.25);
+}
+
+.checkout-btn:hover {
+transform: translateY(-2px);
+}
+
+/* --- CHECKOUT FORM MODAL --- */
+.checkout-overlay {
+position: fixed;
+top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.55);
+backdrop-filter: blur(6px);
+z-index: 2000;
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+
+.checkout-overlay.active {
+opacity: 1;
+visibility: visible;
+}
+
+.checkout-form-modal {
+background: white;
+border-radius: 28px;
+width: 100%;
+max-width: 480px;
+box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+overflow: hidden;
+transform: scale(0.92) translateY(20px);
+transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.checkout-overlay.active .checkout-form-modal {
+transform: scale(1) translateY(0);
+}
+
+.checkout-form-header {
+background: var(--primary);
+padding: 28px 30px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.checkout-form-header h2 {
+color: white;
+font-size: 1.4rem;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.checkout-form-header h2 i {
+color: var(--orange);
+}
+
+.close-checkout-btn {
+background: rgba(255,255,255,0.1);
+border: none;
+width: 36px; height: 36px;
+border-radius: 50%;
+cursor: pointer;
+font-size: 1.1rem;
+color: white;
+transition: .2s;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.close-checkout-btn:hover {
+background: rgba(255,255,255,0.2);
+}
+
+.checkout-form-body {
+padding: 30px;
+}
+
+.checkout-form-body p.subtitle {
+color: var(--gray);
+font-size: 0.95rem;
+margin-bottom: 25px;
+line-height: 1.6;
+}
+
+.form-group {
+margin-bottom: 20px;
+}
+
+.form-group label {
+display: block;
+font-weight: 600;
+color: var(--primary);
+margin-bottom: 8px;
+font-size: 0.95rem;
+}
+
+.form-group label span {
+color: #ef4444;
+}
+
+.form-group input,
+.form-group textarea {
+width: 100%;
+padding: 14px 18px;
+border: 2px solid #e5e7eb;
+border-radius: 14px;
+font-size: 1rem;
+font-family: 'Outfit', sans-serif;
+color: var(--primary);
+outline: none;
+transition: border-color 0.2s;
+background: #f9fafb;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+border-color: var(--orange);
+background: white;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+color: #9ca3af;
+}
+
+.form-group textarea {
+resize: vertical;
+min-height: 90px;
+}
+
+.send-whatsapp-btn {
+width: 100%;
+padding: 17px;
+border: none;
+border-radius: 50px;
+background: #25D366;
+color: white;
+font-size: 1.1rem;
+font-weight: 700;
+cursor: pointer;
+transition: all .3s ease;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+margin-top: 10px;
+}
+
+.send-whatsapp-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 14px 30px rgba(37, 211, 102, 0.4);
+background: #20c35e;
+}
+
+.order-summary-preview {
+background: #f3f4f6;
+border-radius: 14px;
+padding: 16px 18px;
+margin-bottom: 22px;
+font-size: 0.92rem;
+color: var(--gray);
+line-height: 1.7;
+}
+
+.order-summary-preview strong {
+color: var(--primary);
+}
+
+/* --- FOOTER STYLES --- */
+.footer{
+background:var(--primary);
+padding:80px 6% 40px;
+color:white;
+margin-top:80px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:50px;
+margin-bottom: 50px;
+}
+
+.footer h3{
+margin-bottom:25px;
+font-size: 1.2rem;
+color: white;
+}
+
+.footer p,
+.footer a{
+color:rgba(255,255,255,.6);
+text-decoration:none;
+line-height:2.2;
+transition: .3s;
+}
+
+.footer a:hover {
+color: var(--orange);
+}
+
+.socials{
+display:flex;
+gap:12px;
+margin-top:15px;
+}
+
+.socials a{
+width:40px;
+height:40px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(255,255,255,.05);
+transition:.3s;
+color: white;
+}
+
+.socials a:hover{
+background:var(--orange);
+transform: translateY(-3px);
+}
+
+.popup-order{
+position:fixed;
+bottom:30px;
+left:30px;
+background:white;
+padding:16px 24px;
+border-radius:16px;
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+z-index:800;
+font-size:.95rem;
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 12px;
+transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+opacity: 0;
+transform: translateY(20px);
+}
+
+.popup-icon {
+background: #e0f2fe;
+color: #0284c7;
+width: 35px;
+height: 35px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+@media(max-width:768px){
+.hero-content h1{ font-size:3rem; }
+.hero{ height:90vh; }
+header { padding: 15px 5%; }
+.popup-order { bottom: 20px; left: 20px; right: 20px; text-align: center; justify-content: center;}
+.checkout-form-body { padding: 22px; }
+}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-900 pb-20 md:pb-0">
+<body>
 
-    <nav class="hidden md:block bg-white/80 backdrop-blur-md border-b sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-8">
-                <img src="images/PNG3.png" alt="Amano" class="h-12 cursor-pointer" onclick="location.href='index.html'">
-                <div class="relative w-[400px]">
-                    <input type="text" id="global-search-desktop" placeholder="Search commodities..." 
-                           class="w-full pl-12 pr-4 py-2.5 bg-gray-100 border-none rounded-2xl text-sm focus:ring-2 focus:ring-secondary outline-none">
-                    <i class="fas fa-search absolute left-4 top-3.5 text-gray-400"></i>
-                </div>
-            </div>
-            <div class="flex items-center space-x-8 text-[13px] font-bold uppercase tracking-wider">
-                <a href="index.html" class="text-secondary border-b-2 border-secondary pb-1">Marketplace</a>
-                <a href="auth.html?role=seller" class="text-primary hover:text-secondary">Become a Seller</a>
-                <div id="auth-links-desktop" class="flex items-center space-x-4 border-l pl-6">
-                    <a href="auth.html" class="text-gray-500">Login</a>
-                    <a href="auth.html" class="bg-primary text-white px-8 py-3 rounded-2xl shadow-lg shadow-blue-900/20">Join Free</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<header>
+<div class="logo">
+  <img src="images/PNG3.png" alt="Amano Logo" onerror="this.src='https://placehold.co/150x50/0C1F3F/FFF?text=Amano.ng'">
+</div>
 
-    <header class="md:hidden bg-white sticky top-0 z-50 px-4 py-3 border-b flex items-center justify-between">
-        <img src="images/PNG3.png" alt="Amano" class="h-8" onclick="location.href='index.html'">
-        <div class="flex items-center space-x-4">
-            <button onclick="document.getElementById('mobile-search-overlay').classList.toggle('hidden')" class="text-primary">
-                <i class="fas fa-search text-xl"></i>
-            </button>
-            <div class="relative">
-                <i class="fas fa-bell text-xl text-primary"></i>
-                <span class="absolute -top-1 -right-1 w-2 h-2 bg-secondary rounded-full"></span>
-            </div>
-        </div>
-    </header>
+<button class="cart-btn" id="cartToggleBtn">
+  <i class="fa-solid fa-cart-shopping"></i>
+  Cart
+  <span id="globalCartCount">0</span>
+</button>
+</header>
 
-    <div id="mobile-search-overlay" class="hidden fixed inset-0 bg-white z-[60] p-4">
-        <div class="flex items-center space-x-4 mb-6">
-            <button onclick="document.getElementById('mobile-search-overlay').classList.add('hidden')" class="text-primary">
-                <i class="fas fa-arrow-left text-xl"></i>
-            </button>
-            <input type="text" id="global-search-mobile" placeholder="Search commodities..." 
-                   class="w-full py-3 px-4 bg-gray-100 rounded-2xl outline-none focus:ring-2 focus:ring-secondary">
-        </div>
-        <p class="text-[10px] font-black uppercase text-gray-400 mb-4 tracking-widest">Recent Searches</p>
-        <div class="flex flex-wrap gap-2">
-            <span class="bg-gray-100 px-4 py-2 rounded-full text-xs font-medium">Yellow Corn</span>
-            <span class="bg-gray-100 px-4 py-2 rounded-full text-xs font-medium">Soya Beans</span>
-        </div>
+<section class="hero">
+<div class="slide active" style="background-image:url('images/student1.jpg')">
+  <div class="hero-content">
+    <h1>Affordable food for students</h1>
+    <p>Order rice, beans and affordable food stuffs directly from your hostel room.</p>
+    <button class="hero-btn"><a href="#products">Start Shopping</a></button>
+  </div>
+</div>
+
+<div class="slide" style="background-image:url('images/rice1.jpg')">
+  <div class="hero-content">
+    <h1>Fresh grains. No stress.</h1>
+    <p>Pre-cleaned rice and beans delivered fast across campus.</p>
+    <button class="hero-btn"><a href="#products">Browse Products</a></button>
+  </div>
+</div>
+
+<div class="slide" style="background-image:url('images/student2.jpg')">
+  <div class="hero-content">
+    <h1>Eat better. Spend less.</h1>
+    <p>We help students eat well without overspending or stress.</p>
+    <button class="hero-btn"><a href="#products">Order Now</a></button>
+  </div>
+</div>
+</section>
+
+<section class="section" id="products">
+<h2 class="section-title">Popular Products</h2>
+<p class="section-subtitle">Affordable food items for every student.</p>
+
+<div class="products-grid">
+
+  <div class="product-card" data-id="p1" data-name="Sand Free Rice" data-price="5800" data-img="images/rice1.jpg">
+    <div class="product-img">
+      <img src="images/rice1.jpg" alt="Rice" onerror="this.src='https://images.unsplash.com/photo-1586201375761-83865001e8ac?auto=format&fit=crop&q=80'">
+    </div>
+    <div class="product-body">
+      <h3 class="product-name">Sand Free Rice</h3>
+      <p class="product-desc">Premium long grain rice cleaned and ready to cook directly.</p>
+      <div class="product-price">₦5,800 <span style="font-size: 1rem; color: #6b7280; font-weight: 400;">/ Custard</span></div>
+
+      <div class="qty-control">
+        <button class="qty-btn minus-btn">-</button>
+        <span class="qty-display">1</span>
+        <button class="qty-btn plus-btn">+</button>
+      </div>
+
+      <button class="add-btn">
+        <i class="fa-solid fa-plus"></i> Add To Cart
+      </button>
+    </div>
+  </div>
+
+  <div class="product-card" data-id="p2" data-name="Iron Beans" data-price="5500" data-img="images/beanss.jpg">
+    <div class="product-img">
+      <img src="images/beanss.jpg" alt="Beans" onerror="this.src='https://images.unsplash.com/photo-1551462147-37885acc36f1?auto=format&fit=crop&q=80'">
+    </div>
+    <div class="product-body">
+      <h3 class="product-name">Iron Beans</h3>
+      <p class="product-desc">Stone-free beans cleaned and pre-selected specially for busy students.</p>
+      <div class="product-price">₦5,500 <span style="font-size: 1rem; color: #6b7280; font-weight: 400;">/ Custard</span></div>
+
+      <div class="qty-control">
+        <button class="qty-btn minus-btn">-</button>
+        <span class="qty-display">1</span>
+        <button class="qty-btn plus-btn">+</button>
+      </div>
+
+      <button class="add-btn">
+        <i class="fa-solid fa-plus"></i> Add To Cart
+      </button>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+<div class="footer-grid">
+  <div>
+    <img src="images/ICON2.png" alt="Amano Logo" style="width:120px; margin-bottom: 15px;" onerror="this.src='https://placehold.co/150x50/0C1F3F/FFF?text=Amano.ng'">
+    <p>Your trusted campus food marketplace built for students. Eat better, study harder.</p>
+  </div>
+  <div>
+    <h3>Quick Links</h3>
+    <p><a href="#">All Products</a></p>
+    <p><a href="#">Campus Delivery</a></p>
+    <p><a href="#">Track Order</a></p>
+  </div>
+  <div>
+    <h3>Social Handles</h3>
+    <div class="socials">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+    </div>
+  </div>
+  <div>
+    <h3>Support</h3>
+    <p><i class="fa-regular fa-envelope" style="margin-right: 8px;"></i> support@amano.ng</p>
+    <p><i class="fa-regular fa-clock" style="margin-right: 8px;"></i> Mon - Sat</p>
+    <p><i class="fa-regular fa-calendar" style="margin-right: 8px;"></i> 8AM - 8PM</p>
+  </div>
+</div>
+<div style="text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+  &copy; 2026 Amano.ng. All rights reserved.
+</div>
+</footer>
+
+<!-- CART SIDEBAR OVERLAY -->
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-modal">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="close-cart-btn" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <section class="hero-gradient py-12 md:py-24 text-white px-4 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto text-center relative z-10">
-            <span class="bg-secondary/20 text-secondary text-[10px] md:text-xs font-black px-4 py-2 rounded-full uppercase tracking-[0.2em] mb-4 inline-block">Direct From Source</span>
-            <h1 class="text-3xl md:text-7xl font-black mb-4 uppercase tracking-tighter leading-tight">
-                Secure Wholesale <br><span class="text-secondary italic">Agro-Trade</span>
-            </h1>
-            <p class="text-blue-100 text-sm md:text-xl font-medium max-w-xl mx-auto leading-relaxed px-4">
-                The leading B2B exchange for verified Nigerian producers.
-            </p>
-        </div>
-    </section>
-
-    <div class="md:hidden overflow-x-auto no-scrollbar py-6 px-4 bg-white border-b flex space-x-4">
-        <button class="bg-primary text-white px-6 py-2 rounded-full text-xs font-bold whitespace-nowrap">All</button>
-        <button class="bg-gray-100 text-gray-600 px-6 py-2 rounded-full text-xs font-bold whitespace-nowrap">Grains</button>
-        <button class="bg-gray-100 text-gray-600 px-6 py-2 rounded-full text-xs font-bold whitespace-nowrap">Legumes</button>
-        <button class="bg-gray-100 text-gray-600 px-6 py-2 rounded-full text-xs font-bold whitespace-nowrap">Tubers</button>
+    <div class="cart-items-container" id="cartItemsList">
+      <div class="empty-cart-msg">Your cart is empty.</div>
     </div>
 
-    <main class="max-w-7xl mx-auto px-4 py-8 md:py-16">
-        <div class="flex justify-between items-center mb-8">
-            <h2 class="text-xl md:text-3xl font-black text-primary uppercase tracking-tighter italic">Live Listings</h2>
-            <select id="category-filter" class="hidden md:block bg-white border-2 border-gray-100 text-sm font-bold rounded-2xl px-6 py-3 outline-none focus:border-secondary transition-all">
-                <option value="all">All Commodities</option>
-                <option value="grains">Grains</option>
-                <option value="legumes">Legumes</option>
-                <option value="tubers">Tubers</option>
-            </select>
-        </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span>₦<span id="cartTotalDisplay">0</span></span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+  </div>
+</div>
 
-        <div id="marketplace-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
-            <div class="bg-white rounded-2xl p-2 md:p-4 border border-gray-100">
-                <div class="h-32 md:h-48 skeleton rounded-xl mb-3"></div>
-                <div class="h-4 skeleton w-3/4 mb-2 rounded"></div>
-                <div class="h-4 skeleton w-1/2 mb-3 rounded"></div>
-                <div class="h-8 skeleton rounded-lg"></div>
+<!-- CHECKOUT FORM MODAL -->
+<div class="checkout-overlay" id="checkoutOverlay">
+  <div class="checkout-form-modal">
+    <div class="checkout-form-header">
+      <h2><i class="fa-brands fa-whatsapp"></i> Complete Your Order</h2>
+      <button class="close-checkout-btn" id="closeCheckoutBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="checkout-form-body">
+      <p class="subtitle">Fill in your details below and we'll send your order directly to our WhatsApp. Delivery is <strong style="color: var(--success);">FREE</strong> 🚚</p>
+
+      <!-- Live order summary inside checkout form -->
+      <div class="order-summary-preview" id="checkoutOrderSummary">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="form-group">
+        <label>Full Name <span>*</span></label>
+        <input type="text" id="buyerName" placeholder="e.g. Chidinma Eze" />
+      </div>
+
+      <div class="form-group">
+        <label>WhatsApp / Phone Number <span>*</span></label>
+        <input type="tel" id="buyerPhone" placeholder="e.g. 08012345678" />
+      </div>
+
+      <div class="form-group">
+        <label>Delivery Address <span>*</label>
+        <textarea id="buyerAddress" placeholder="e.g. No 1, Murtala Street, Ekpo Abasi"></textarea>
+      </div>
+
+      <button class="send-whatsapp-btn" id="sendWhatsappBtn">
+        <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i>
+        Send Order via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- FAKE ORDER POPUP -->
+<div class="popup-order" id="popupOrder">
+<div class="popup-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+<span id="popupText">Emeka just ordered 2 custard paints of rice.</span>
+</div>
+
+<script>
+// --- HERO SLIDER LOGIC ---
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+
+setInterval(() => {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}, 5000);
+
+
+// --- CART LOGIC ---
+let cart = [];
+
+const cartDisplay       = document.getElementById('globalCartCount');
+const cartOverlay       = document.getElementById('cartOverlay');
+const cartToggleBtn     = document.getElementById('cartToggleBtn');
+const closeCartBtn      = document.getElementById('closeCartBtn');
+const cartItemsList     = document.getElementById('cartItemsList');
+const cartTotalDisplay  = document.getElementById('cartTotalDisplay');
+const checkoutBtn       = document.getElementById('checkoutBtn');
+const productCards      = document.querySelectorAll('.product-card');
+
+// Checkout modal elements
+const checkoutOverlay   = document.getElementById('checkoutOverlay');
+const closeCheckoutBtn  = document.getElementById('closeCheckoutBtn');
+const sendWhatsappBtn   = document.getElementById('sendWhatsappBtn');
+const buyerName         = document.getElementById('buyerName');
+const buyerPhone        = document.getElementById('buyerPhone');
+const buyerAddress      = document.getElementById('buyerAddress');
+const checkoutOrderSummary = document.getElementById('checkoutOrderSummary');
+
+const WHATSAPP_NUMBER = '2349019354766'; // Nigeria country code + number
+
+const formatMoney = (amount) => amount.toLocaleString('en-US');
+
+// Open & Close Cart Sidebar
+cartToggleBtn.addEventListener('click', () => cartOverlay.classList.add('active'));
+closeCartBtn.addEventListener('click', () => cartOverlay.classList.remove('active'));
+cartOverlay.addEventListener('click', (e) => {
+  if (e.target === cartOverlay) cartOverlay.classList.remove('active');
+});
+
+// Open Checkout Modal from "Proceed to Checkout" button
+checkoutBtn.addEventListener('click', () => {
+  if (cart.length === 0) {
+    alert('Your cart is empty. Add some items first!');
+    return;
+  }
+  // Populate order summary preview
+  updateCheckoutSummary();
+  // Hide cart sidebar, show checkout modal
+  cartOverlay.classList.remove('active');
+  checkoutOverlay.classList.add('active');
+});
+
+// Close Checkout Modal
+closeCheckoutBtn.addEventListener('click', () => checkoutOverlay.classList.remove('active'));
+checkoutOverlay.addEventListener('click', (e) => {
+  if (e.target === checkoutOverlay) checkoutOverlay.classList.remove('active');
+});
+
+// Populate the order summary inside the checkout form
+function updateCheckoutSummary() {
+  let total = 0;
+  let itemLines = '';
+  cart.forEach(item => {
+    const lineTotal = item.price * item.qty;
+    total += lineTotal;
+    itemLines += `<div>• <strong>${item.name}</strong> × ${item.qty} custard${item.qty > 1 ? 's' : ''} = <strong style="color:var(--orange)">₦${formatMoney(lineTotal)}</strong></div>`;
+  });
+  checkoutOrderSummary.innerHTML = `
+    <div style="margin-bottom:8px; font-weight:600; color:var(--primary);">🛒 Order Summary</div>
+    ${itemLines}
+    <div style="margin-top:10px; padding-top:10px; border-top:1px solid #e5e7eb; font-weight:700; color:var(--primary);">
+      Total: <span style="color:var(--orange)">₦${formatMoney(total)}</span> &nbsp;|&nbsp; 🚚 Delivery: FREE
+    </div>
+  `;
+}
+
+// Send Order to WhatsApp
+sendWhatsappBtn.addEventListener('click', () => {
+  const name    = buyerName.value.trim();
+  const phone   = buyerPhone.value.trim();
+  const address = buyerAddress.value.trim();
+
+  // Validation
+  if (!name || !phone || !address) {
+    alert('Please fill in all fields before sending your order.');
+    return;
+  }
+
+  // Build order details lines
+  let orderLines = '';
+  let total = 0;
+  cart.forEach(item => {
+    const lineTotal = item.price * item.qty;
+    total += lineTotal;
+    orderLines += `  • ${item.name} × ${item.qty} custard${item.qty > 1 ? 's' : ''} = ₦${formatMoney(lineTotal)}\n`;
+  });
+
+  // Format date & time
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-GB'); // DD/MM/YYYY
+  const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+  // Build the WhatsApp message
+  const message =
+`🛒 NEW ORDER — Amano.ng
+
+━━━━━━━━━━━━━━━━━━
+
+👤 Name: ${name}
+
+📞 Phone: ${phone}
+
+🏠 Address: ${address}
+
+━━━━━━━━━━━━━━━━━━
+
+📦 Order Details:
+
+${orderLines}
+━━━━━━━━━━━━━━━━━━
+
+💰 Total: ₦${formatMoney(total)}
+
+🚚 Delivery: FREE
+
+Date: ${dateStr} | ${timeStr}
+
+💳 Payment: Pay on Delivery`;
+
+  const encodedMsg = encodeURIComponent(message);
+  const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`;
+
+  window.open(waURL, '_blank');
+
+  // Close modal and clear form after sending
+  checkoutOverlay.classList.remove('active');
+  buyerName.value = '';
+  buyerPhone.value = '';
+  buyerAddress.value = '';
+});
+
+
+// Update the Cart UI
+function updateCartUI() {
+  let totalItems = 0;
+  let totalPrice = 0;
+
+  cartItemsList.innerHTML = '';
+
+  if (cart.length === 0) {
+    cartItemsList.innerHTML = '<div class="empty-cart-msg">Your cart is empty.</div>';
+  } else {
+    cart.forEach((item, index) => {
+      totalItems += item.qty;
+      totalPrice += (item.price * item.qty);
+
+      const itemHTML = `
+        <div class="cart-item">
+          <img src="${item.img}" alt="${item.name}" class="cart-item-img" onerror="this.src='https://placehold.co/80x80/eee/999?text=Image'">
+          <div class="cart-item-info">
+            <div class="cart-item-title">
+              ${item.name}
+              <button class="delete-item-btn" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash-can"></i></button>
             </div>
-            <div class="bg-white rounded-2xl p-2 md:p-4 border border-gray-100">
-                <div class="h-32 md:h-48 skeleton rounded-xl mb-3"></div>
-                <div class="h-4 skeleton w-3/4 mb-2 rounded"></div>
-                <div class="h-4 skeleton w-1/2 mb-3 rounded"></div>
-                <div class="h-8 skeleton rounded-lg"></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+              <div class="cart-item-actions">
+                <button onclick="changeQty(${index}, -1)">-</button>
+                <span>${item.qty}</span>
+                <button onclick="changeQty(${index}, 1)">+</button>
+              </div>
+              <div class="cart-item-price">₦${formatMoney(item.price * item.qty)}</div>
             </div>
+          </div>
         </div>
-    </main>
+      `;
+      cartItemsList.insertAdjacentHTML('beforeend', itemHTML);
+    });
+  }
 
-    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t bottom-nav z-50 flex justify-around py-3 px-2">
-        <a href="index.html" class="flex flex-col items-center text-secondary">
-            <i class="fas fa-home text-lg mb-1"></i>
-            <span class="text-[9px] font-bold uppercase">Home</span>
-        </a>
-        <button onclick="document.getElementById('mobile-search-overlay').classList.remove('hidden')" class="flex flex-col items-center text-gray-400">
-            <i class="fas fa-search text-lg mb-1"></i>
-            <span class="text-[9px] font-bold uppercase">Search</span>
-        </button>
-        <a href="messages.html" class="flex flex-col items-center text-gray-400">
-            <i class="fas fa-comment-alt text-lg mb-1"></i>
-            <span class="text-[9px] font-bold uppercase">Chat</span>
-        </a>
-        <a href="auth.html" class="flex flex-col items-center text-gray-400">
-            <i class="fas fa-user-circle text-lg mb-1"></i>
-            <span class="text-[9px] font-bold uppercase">Account</span>
-        </a>
-    </nav>
+  cartDisplay.innerText = totalItems;
+  cartTotalDisplay.innerText = formatMoney(totalPrice);
+}
 
-    <script type="module" src="js/marketplace.js"></script>
+window.changeQty = function(index, change) {
+  if (cart[index].qty + change > 0) {
+    cart[index].qty += change;
+  } else {
+    cart.splice(index, 1);
+  }
+  updateCartUI();
+}
+
+window.removeFromCart = function(index) {
+  cart.splice(index, 1);
+  updateCartUI();
+}
+
+// Product Card Logic
+productCards.forEach(card => {
+  const minusBtn    = card.querySelector('.minus-btn');
+  const plusBtn     = card.querySelector('.plus-btn');
+  const qtyDisplay  = card.querySelector('.qty-display');
+  const addBtn      = card.querySelector('.add-btn');
+
+  const productId   = card.getAttribute('data-id');
+  const productName = card.getAttribute('data-name');
+  const productPrice = parseInt(card.getAttribute('data-price'));
+  const productImg  = card.getAttribute('data-img');
+
+  minusBtn.addEventListener('click', () => {
+    let currentQty = parseInt(qtyDisplay.innerText);
+    if (currentQty > 1) qtyDisplay.innerText = currentQty - 1;
+  });
+
+  plusBtn.addEventListener('click', () => {
+    let currentQty = parseInt(qtyDisplay.innerText);
+    qtyDisplay.innerText = currentQty + 1;
+  });
+
+  addBtn.addEventListener('click', () => {
+    let qtyToAdd = parseInt(qtyDisplay.innerText);
+    const existingItemIndex = cart.findIndex(item => item.id === productId);
+
+    if (existingItemIndex > -1) {
+      cart[existingItemIndex].qty += qtyToAdd;
+    } else {
+      cart.push({
+        id: productId,
+        name: productName,
+        price: productPrice,
+        img: productImg,
+        qty: qtyToAdd
+      });
+    }
+
+    updateCartUI();
+
+    const originalContent = addBtn.innerHTML;
+    addBtn.innerHTML = '<i class="fa-solid fa-check"></i> Added';
+    addBtn.style.background = 'var(--success)';
+
+    setTimeout(() => {
+      addBtn.innerHTML = originalContent;
+      addBtn.style.background = '';
+      qtyDisplay.innerText = "1";
+    }, 1500);
+  });
+});
+
+
+// --- FAKE ORDER POPUP ---
+const names  = ['Emeka', 'Chioma', 'Blessing', 'David', 'Amarachi', 'Samuel', 'Favour'];
+const orders = [
+  '2 custard paints of rice',
+  '1 paint of beans',
+  '3 custards of local rice',
+  'Iron Beans',
+  'Garri and rice',
+  '2 paints of beans'
+];
+
+const popup     = document.getElementById('popupOrder');
+const popupText = document.getElementById('popupText');
+
+setInterval(() => {
+  const randomName  = names[Math.floor(Math.random() * names.length)];
+  const randomOrder = orders[Math.floor(Math.random() * orders.length)];
+  popupText.innerHTML = `<strong>${randomName}</strong> just ordered ${randomOrder}`;
+
+  popup.style.opacity   = '1';
+  popup.style.transform = 'translateY(0px)';
+
+  setTimeout(() => {
+    popup.style.opacity   = '0';
+    popup.style.transform = 'translateY(20px)';
+  }, 3000);
+}, 6000);
+</script>
+
 </body>
 </html>
